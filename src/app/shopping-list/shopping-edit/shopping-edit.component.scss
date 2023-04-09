@@ -1,3 +1,18 @@
 mat-form-field {
   width: 100%;
 }
+
+.mat-button-toggle{
+  background-color: #306cee;
+  color: #ffffff;
+}
+
+.mat-button-toggle:hover {
+  background-color: transparent;
+  color: #1100ff !important;
+}
+
+.mat-button-toggle-checked {
+  background-color: #ffffff;
+  color: #333 !important;
+}
