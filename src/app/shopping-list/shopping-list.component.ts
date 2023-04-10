@@ -13,4 +13,7 @@ export class ShoppingListComponent {
     new IngredientsModel('Cassava', 3),
   ];
 
+  addIngredient(ingredient: IngredientsModel) {
+    this.ingredients.push(ingredient)
+  }
 }
