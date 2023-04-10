@@ -1,1 +1,11 @@
-<p>recipe-item works!</p>
+<div class="col-sm-12">
+  <div class="card rounded">
+    <div>
+      <h4 class="mat-h2">{{ recipe.name }}</h4>
+      <p>{{ recipe.description }}</p>
+    </div>
+    <div class="ms-auto">
+      <img [src]="recipe.imagePath" class="img-fluid rounded" style="max-height: 50px" alt="">
+    </div>
+  </div>
+</div>
