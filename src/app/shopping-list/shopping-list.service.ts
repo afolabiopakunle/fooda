@@ -19,4 +19,9 @@ export class ShoppingListService {
   addIngredient(ingredient: IngredientsModel) {
     this.ingredients.push(ingredient)
   }
+
+
+  saveToShopping(ingredients: IngredientsModel[]) {
+    this.ingredients.push(...ingredients)
+  }
 }

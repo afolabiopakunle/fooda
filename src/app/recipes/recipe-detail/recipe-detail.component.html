@@ -30,12 +30,12 @@
 
 <!--//MAT-MENU-->
 <mat-menu xPosition="before" #menu="matMenu">
-  <button mat-menu-item>
+  <button (click)="onSaveToShopping(recipe.ingredients)" mat-menu-item>
     <mat-icon>dialpad</mat-icon>
     <span>Add to shopping list</span>
   </button>
   <button mat-menu-item>
-    <mat-icon>voicemail</mat-icon>
+    <mat-icon>voicemail</mat-icon>F
     <span>Edit recipe</span>
   </button>
   <button mat-menu-item>

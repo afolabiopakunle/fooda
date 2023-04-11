@@ -13,13 +13,13 @@ export class RecipeDetailComponent implements OnInit{
 
   @Input() recipe!: RecipeModel
 
-  ingredients!: IngredientsModel[];
-
   constructor(private shoppingListService: ShoppingListService) {
   }
 
   ngOnInit() {
-    this.ingredients =this.shoppingListService.getIngredients()
   }
 
+  onSaveToShopping(ingredients: IngredientsModel[]) {
+    this.shoppingListService.saveToShopping(this.recipe.ingredients);
+  }
 }
