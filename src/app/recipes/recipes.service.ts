@@ -1,6 +1,9 @@
 import { RecipeModel } from './recipe.model';
+import { EventEmitter } from '@angular/core';
 
 export class RecipesService {
+
+  recipeSelected = new EventEmitter<RecipeModel>();
 
  private recipes: RecipeModel[] = [
     new RecipeModel('Amala', 'Yoruba solid', 'https://i0.wp.com/kscuisine.com/wp-content/uploads/2014/04/IMG_1068.jpg?w=584&ssl=1'),

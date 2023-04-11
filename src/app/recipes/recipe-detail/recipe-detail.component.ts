@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { RecipeModel } from '../recipe.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -9,6 +10,5 @@ import { RecipeModel } from '../recipe.model';
 export class RecipeDetailComponent {
 
   @Input() recipe!: RecipeModel;
-
 
 }
