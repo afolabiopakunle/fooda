@@ -6,9 +6,17 @@ export class RecipesService {
   recipeSelected = new EventEmitter<RecipeModel>();
 
  private recipes: RecipeModel[] = [
-    new RecipeModel('Amala', 'Yoruba solid', 'https://i0.wp.com/kscuisine.com/wp-content/uploads/2014/04/IMG_1068.jpg?w=584&ssl=1'),
-    new RecipeModel('Fufu', 'Igbo solid', 'https://www.thespruceeats.com/thmb/Lkgiza_StWUtGA1UvDgf1EhBwic=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/yam-fufu-2138088-hero-01-3366d155060e480abaf33cc67031dc9d.jpg'),
-  ];
+    new RecipeModel('Amala',
+      'Yoruba solid',
+      'https://i0.wp.com/kscuisine.com/wp-content/uploads/2014/04/IMG_1068.jpg?w=584&ssl=1',
+    [{name: 'Elubo', amount: 2}, {name: 'Water', amount: 8}]),
+    new RecipeModel(
+      'Fufu',
+      'Igbo solid',
+      'https://i0.wp.com/dobbyssignature.com/wp-content/uploads/2022/07/Nigerian-Fufu-scaled.jpg?fit=2560%2C1473&ssl=1',
+      [{name: 'Cassava', amount: 5}, {name: 'Water', amount: 4}]
+    )
+  ]
 
   constructor() {
   }

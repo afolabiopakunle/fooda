@@ -1,6 +1,6 @@
 <div class="row mt-5" *ngIf="recipe">
   <div class="col-sm-12">
-    <img class="img-fluid" [src]="recipe.imagePath" [alt]="recipe.name">
+    <img class="img-fluid rounded" [src]="recipe.imagePath" [alt]="recipe.name">
   </div>
   <div class="row">
     <div class="col-sm-12">
@@ -19,7 +19,11 @@
       {{recipe.description}}
     </div>
     <div class="col-sm-12">
-      Ingredients
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
+          {{ ingredient.name }} - {{ingredient.amount}}
+        </li>
+      </ul>
     </div>
   </div>
 </div>
