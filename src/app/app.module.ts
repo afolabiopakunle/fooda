@@ -12,6 +12,7 @@ import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-ed
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { MaterialsModule } from './materials/materials.module';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MaterialsModule } from './materials/materials.module';
     BrowserModule,
     BrowserAnimationsModule,
     MaterialsModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
