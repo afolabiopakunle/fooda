@@ -15,7 +15,13 @@ export class RecipesService {
       'Igbo solid',
       'https://i0.wp.com/dobbyssignature.com/wp-content/uploads/2022/07/Nigerian-Fufu-scaled.jpg?fit=2560%2C1473&ssl=1',
       [{name: 'Cassava', amount: 5}, {name: 'Water', amount: 4}]
-    )
+    ),
+   new RecipeModel(
+        'Egusi',
+     'Multi-purpose Nigeria soup with Yoruba origin',
+     'https://demandafrica.com/wp-content/uploads/2017/06/EgusiSoup-e1533238405501.jpg',
+     [{name: 'Egusi seed', amount: 2}, {name: 'Palm oil', amount: 3} ]
+   )
   ]
 
   constructor() {
@@ -24,4 +30,9 @@ export class RecipesService {
   getRecipes() {
     return this.recipes.slice()
   }
+
+  getRecipe(id: number) {
+   return this.recipes[id]
+  }
+
 }

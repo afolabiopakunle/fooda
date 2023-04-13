@@ -1,8 +1,13 @@
 .cards.rounded {
   display: flex;
-  background: lightgray;
+  background: #efefef;
   align-items: center;
   margin-block: 1rem;
   padding: 1rem;
   cursor: pointer;
+
+}
+
+.active .cards.rounded {
+  background-color: lightgray;
 }

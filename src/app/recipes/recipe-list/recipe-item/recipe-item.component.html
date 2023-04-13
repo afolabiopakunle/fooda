@@ -1,5 +1,5 @@
-<div class="col-sm-12">
-  <div class="cards rounded" (click)="onRecipeClicked()">
+<div class="col-sm-12" routerLinkActive="active" [routerLink]="[index]">
+  <div class="cards rounded">
     <div>
       <h4 class="mat-h2">{{ recipe.name }}</h4>
       <p>{{ recipe.description }}</p>
