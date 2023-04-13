@@ -5,3 +5,9 @@
 .mx-4, .me-5 {
   cursor: pointer;
 }
+
+.active {
+  background: lightgrey;
+  padding: 1rem;
+  border-radius: 4px;
+}

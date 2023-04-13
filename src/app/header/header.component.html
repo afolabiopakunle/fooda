@@ -1,7 +1,7 @@
 <mat-toolbar>
   <span>My App</span>
-  <span class="mx-4" (click)="switchPage(true)"> Recipes</span>
-  <span class="me-5" (click)="switchPage(false)"> Shopping List</span>
+  <span class="mx-4" routerLinkActive="active" routerLink="recipes"> Recipes</span>
+  <span class="me-5" routerLinkActive="active" routerLink="shopping-list"> Shopping List</span>
   <span class="example-spacer"></span>
   <span>Manage</span>
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
