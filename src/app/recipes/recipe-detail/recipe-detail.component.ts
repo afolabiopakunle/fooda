@@ -3,7 +3,7 @@ import { RecipeModel } from '../recipe.model';
 import { Observable } from 'rxjs';
 import { IngredientsModel } from '../../shared/ingredients.model';
 import { ShoppingListService } from '../../shopping-list/shopping-list.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RecipesService } from '../recipes.service';
 
 @Component({
@@ -19,6 +19,7 @@ export class RecipeDetailComponent implements OnInit{
   constructor(private recipesService: RecipesService,
               private shoppingListService: ShoppingListService,
               private route: ActivatedRoute,
+              private router: Router,
               ) {
   }
 
@@ -32,4 +33,9 @@ export class RecipeDetailComponent implements OnInit{
   onSaveToShopping(ingredients: IngredientsModel[]) {
     this.shoppingListService.saveToShopping(this.recipe.ingredients);
   }
+
+  editRecipe() {
+    this.router.navigate(['edit'], {relativeTo: this.route})
+  }
+
 }
