@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-12">
-    <form>
+    <form #form="ngForm">
       <div class="row">
       <div class="col-sm-5">
         <mat-form-field appearance="fill">
@@ -8,7 +8,9 @@
           <input
             matInput
             type="text"
-          #nameInput>
+            ngModel
+            name="name"
+          >
         </mat-form-field>
       </div>
         <div class="col-sm-2">
@@ -17,16 +19,18 @@
             <input
               type="number"
               matInput
-              #amountInput>
+              ngModel
+              name="amount"
+            >
           </mat-form-field>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-12">
           <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-            <mat-button-toggle color="primary" value="bold" (click)="addIngredient()">Add</mat-button-toggle>
-            <mat-button-toggle color="warn" value="italic">Delete</mat-button-toggle>
-            <mat-button-toggle color="accent" value="underline">Clear</mat-button-toggle>
+            <mat-button-toggle color="primary" value="bold" (click)="addIngredient(form)">Add</mat-button-toggle>
+            <mat-button-toggle color="warn" value="italic" type="button">Delete</mat-button-toggle>
+            <mat-button-toggle color="accent" value="underline" type="button">Clear</mat-button-toggle>
           </mat-button-toggle-group>
         </div>
       </div>

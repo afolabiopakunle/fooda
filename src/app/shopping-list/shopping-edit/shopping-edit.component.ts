@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { IngredientsModel } from '../../shared/ingredients.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -8,17 +9,13 @@ import { IngredientsModel } from '../../shared/ingredients.model';
 })
 export class ShoppingEditComponent {
 
-  @ViewChild('nameInput') nameInput!: ElementRef;
-  @ViewChild('amountInput') amountInput!: ElementRef;
+
   ingredient = new IngredientsModel('', 0);
   @Output() sendIngredient  = new EventEmitter<IngredientsModel>();
 
-  addIngredient() {
-    this.ingredient.amount = this.amountInput.nativeElement.value;
-    this.ingredient.name = this.nameInput.nativeElement.value;
+  addIngredient(form: NgForm) {
+    this.ingredient.amount = form.value.amount;
+    this.ingredient.name = form.value.name;
     this.sendIngredient.emit(this.ingredient);
-    this.ingredient = new IngredientsModel('', 0);
-    this.amountInput.nativeElement.value = null;
-    this.nameInput.nativeElement.value = '';
   }
 }
