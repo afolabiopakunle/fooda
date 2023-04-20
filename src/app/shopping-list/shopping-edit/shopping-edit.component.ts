@@ -14,6 +14,7 @@ export class ShoppingEditComponent {
   @Output() sendIngredient  = new EventEmitter<IngredientsModel>();
 
   addIngredient(form: NgForm) {
+    if(form.invalid) return;
     this.ingredient.amount = form.value.amount;
     this.ingredient.name = form.value.name;
     this.sendIngredient.emit(this.ingredient);

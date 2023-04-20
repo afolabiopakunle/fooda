@@ -10,6 +10,7 @@
             type="text"
             ngModel
             name="name"
+            required
           >
         </mat-form-field>
       </div>
@@ -21,6 +22,8 @@
               matInput
               ngModel
               name="amount"
+              required
+              min="1"
             >
           </mat-form-field>
         </div>
@@ -28,7 +31,7 @@
       <div class="row">
         <div class="col-sm-12">
           <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-            <mat-button-toggle color="primary" value="bold" (click)="addIngredient(form)">Add</mat-button-toggle>
+            <mat-button-toggle role="button" [disabled]="form.invalid" color="primary" value="bold" (click)="addIngredient(form)">Add</mat-button-toggle>
             <mat-button-toggle color="warn" value="italic" type="button">Delete</mat-button-toggle>
             <mat-button-toggle color="accent" value="underline" type="button">Clear</mat-button-toggle>
           </mat-button-toggle-group>
