@@ -41,9 +41,13 @@ export class RecipeEditComponent implements OnInit {
       recipeDescription = recipe.description;
     }
     this.form = this.fb.group({
-      name: [recipeName],
+      recipeName: [recipeName],
       imagePath: [recipeImagePath],
-      description: [recipeDescription]
+      description: [recipeDescription],
     })
+  }
+
+  submit() {
+    console.log(this.form.value);
   }
 }
