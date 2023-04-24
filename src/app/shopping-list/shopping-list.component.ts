@@ -14,7 +14,8 @@ export class ShoppingListComponent implements OnInit {
 
   @ViewChild('form') form!: NgForm;
 
-  constructor(private shoppingListService: ShoppingListService) {
+  constructor(private shoppingListService: ShoppingListService,
+              ) {
   }
 
   ngOnInit() {

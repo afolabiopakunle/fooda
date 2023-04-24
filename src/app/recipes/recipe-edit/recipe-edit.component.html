@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-sm-12 pt-5">
-    <form [formGroup]="form" (ngSubmit)="submit()">
+    <form [formGroup]="form">
       <div class="row">
         <div class="col-sm-12 mb-3">
           <div class="btn-group">
-            <button [disabled]="form.invalid" class="mr-2" type="submit" mat-raised-button color="primary">Save</button> &nbsp;
+            <button [disabled]="form.invalid" (click)="submit()" class="mr-2" type="submit" mat-raised-button color="primary">Save</button> &nbsp;
             <button type="button" mat-raised-button color="warn">Cancel</button>
           </div>
         </div>
