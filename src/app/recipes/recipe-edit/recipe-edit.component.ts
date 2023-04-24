@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RecipesService } from '../recipes.service';
 
 @Component({
@@ -33,27 +33,36 @@ export class RecipeEditComponent implements OnInit {
     let recipeName = '';
     let recipeImagePath = '';
     let recipeDescription = '';
+    let recipeIngredients = new FormArray<any>([]);
 
     if(this.editMode) {
       const recipe = this.recipeService.getRecipe(this.id);
       recipeName = recipe.name;
       recipeImagePath = recipe.imagePath;
       recipeDescription = recipe.description;
+      if(recipe['ingredients']) {
+        for (let ingredient of recipe.ingredients) {
+          recipeIngredients.push(
+           this.fb.group({
+             name: [ingredient.name, Validators.required],
+             amount: [ingredient.amount, Validators.required]
+           })
+          )
+        }
+      }
     }
     this.form = this.fb.group({
-      recipeName: [recipeName],
-      imagePath: [recipeImagePath],
-      description: [recipeDescription],
-      ingredients: this.fb.array([
-        this.newIngredient()
-      ])
+      recipeName: [recipeName, Validators.required],
+      imagePath: [recipeImagePath, Validators.required],
+      description: [recipeDescription, Validators.required],
+      'ingredients': recipeIngredients
     })
   }
 
   newIngredient() {
     return this.fb.group({
-      name: '',
-      amount: ''
+      name: ['', [Validators.required]],
+      amount: ['', Validators.required]
     })
   }
 
@@ -68,8 +77,8 @@ export class RecipeEditComponent implements OnInit {
   addIngredient() {
     this.ingredients.push(
       this.fb.group({
-        name: '',
-        amount: ''
+        name: ['', Validators.required],
+        amount: ['', Validators.required]
       })
     )
   }
