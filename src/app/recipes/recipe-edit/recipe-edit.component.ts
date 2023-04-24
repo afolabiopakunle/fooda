@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { RecipesService } from '../recipes.service';
 
 @Component({
@@ -44,7 +44,34 @@ export class RecipeEditComponent implements OnInit {
       recipeName: [recipeName],
       imagePath: [recipeImagePath],
       description: [recipeDescription],
+      ingredients: this.fb.array([
+        this.newIngredient()
+      ])
     })
+  }
+
+  newIngredient() {
+    return this.fb.group({
+      name: '',
+      amount: ''
+    })
+  }
+
+  get ingredients() {
+    return this.form.get('ingredients') as FormArray;
+  }
+
+  removeIngredient(index: number) {
+    this.ingredients.removeAt(index)
+  }
+
+  addIngredient() {
+    this.ingredients.push(
+      this.fb.group({
+        name: '',
+        amount: ''
+      })
+    )
   }
 
   submit() {
