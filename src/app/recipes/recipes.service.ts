@@ -1,6 +1,7 @@
 import { RecipeModel } from './recipe.model';
 import { EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 export class RecipesService {
 
@@ -46,5 +47,10 @@ export class RecipesService {
    this.recipes[index] = newRecipe;
     this.recipesChanged.next(this.recipes);
   }
+
+  deleteRecipe(index: number) {
+   this.recipes.splice(index, 1);
+   this.recipesChanged.next(this.recipes);
+ }
 
 }

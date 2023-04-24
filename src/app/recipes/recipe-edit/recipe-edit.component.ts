@@ -84,10 +84,7 @@ export class RecipeEditComponent implements OnInit {
       })
     )
   }
-  // public name: string,
-  // public description: string,
-  // public imagePath: string,
-  // public ingredients: IngredientsModel[],
+
   submit() {
     let recipe = new RecipeModel(
       this.form.value.recipeName,
