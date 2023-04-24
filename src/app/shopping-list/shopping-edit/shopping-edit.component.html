@@ -37,8 +37,13 @@
                                value="bold"
                                (click)="addIngredient(form)"
             >{{ editMode ? 'Update' : 'Add'}}</mat-button-toggle>
-            <mat-button-toggle color="warn" value="italic" type="button">Delete</mat-button-toggle>
-            <mat-button-toggle color="accent" value="underline" type="button">Clear</mat-button-toggle>
+            <mat-button-toggle
+              (click)="onDelete()"
+              *ngIf="editMode"
+              color="warn"
+              value="italic"
+              type="button">Delete</mat-button-toggle>
+            <mat-button-toggle (click)="clear()" color="accent" value="underline" type="button">Clear</mat-button-toggle>
           </mat-button-toggle-group>
         </div>
       </div>
