@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IngredientsModel } from '../shared/ingredients.model';
 import { ShoppingListService } from './shopping-list.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-shopping-list',
@@ -11,14 +12,19 @@ export class ShoppingListComponent implements OnInit {
 
   ingredients: IngredientsModel[] = []
 
+  @ViewChild('form') form!: NgForm;
+
   constructor(private shoppingListService: ShoppingListService) {
   }
 
   ngOnInit() {
     this.ingredients = this.shoppingListService.getIngredients();
+    this.shoppingListService.ingredientsChanged.subscribe(newIngredients => {
+      this.ingredients = newIngredients
+    })
   }
 
-  addIngredient(ingredient: IngredientsModel) {
-    this.shoppingListService.addIngredient(ingredient)
+  onEditItem(index: number) {
+    this.shoppingListService.startedEditing.next(index);
   }
 }

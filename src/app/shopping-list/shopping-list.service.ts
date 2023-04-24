@@ -1,27 +1,48 @@
 import { Injectable } from '@angular/core';
 import { IngredientsModel } from '../shared/ingredients.model';
+import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ShoppingListService {
+
+  ingredientsChanged = new Subject<IngredientsModel[]>();
+  startedEditing = new Subject<number>();
 
   private ingredients: IngredientsModel[] = [
     new IngredientsModel('Elubo', 5),
     new IngredientsModel('Cassava', 3),
-  ]
-  constructor() { }
+  ];
+
+  constructor() {
+  }
 
   getIngredients() {
-    return this.ingredients;
+    return this.ingredients.slice();
   }
 
   addIngredient(ingredient: IngredientsModel) {
-    this.ingredients.push(ingredient)
+    console.log('add');
+    this.ingredients.push(ingredient);
+    this.ingredientsChanged.next(this.ingredients);
   }
 
+  addIngredients(ingredients: IngredientsModel[]) {
+    this.ingredients.push(...ingredients);
+    this.ingredientsChanged.next(this.ingredients.slice());
+  }
+
+  getIngredient(index: number) {
+    return this.ingredients[index];
+  }
+
+  updateIngredient(index: number, newIngredient: IngredientsModel) {
+    this.ingredients[index] = newIngredient;
+    this.ingredientsChanged.next(this.ingredients);
+  }
 
   saveToShopping(ingredients: IngredientsModel[]) {
-    this.ingredients.push(...ingredients)
+    this.ingredients.push(...ingredients);
   }
 }
