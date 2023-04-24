@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   loader = true;
 
   ngOnInit() {
-    setTimeout(() => this.loader = false, 3000)
+    setTimeout(() => this.loader = false, 1000)
   }
 
 
