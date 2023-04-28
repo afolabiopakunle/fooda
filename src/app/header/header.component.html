@@ -4,7 +4,17 @@
   <span class="me-5" routerLinkActive="active" routerLink="shopping-list"> Shopping List</span>
   <span class="example-spacer"></span>
   <span>Manage</span>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+  <button [matMenuTriggerFor]="menu"  mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
     <mat-icon>expand_more</mat-icon>
   </button>
 </mat-toolbar>
+<mat-menu xPosition="before" #menu="matMenu">
+  <button mat-menu-item>
+    <span (click)="storeRecipe()">Save Data</span>
+    <mat-icon>dialpad</mat-icon>
+  </button>
+  <button mat-menu-item>
+    <span>Fetch Data</span>
+    <mat-icon>voicemail</mat-icon>
+  </button>
+</mat-menu>
