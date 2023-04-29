@@ -17,6 +17,9 @@ import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.compon
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ShoppingListService } from './shopping-list/shopping-list.service';
+import { RecipesService } from './recipes/recipes.service';
+import { DataStorageService } from './shared/data-storage.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,11 @@ import { HttpClientModule } from '@angular/common/http';
         ReactiveFormsModule,
         HttpClientModule,
     ],
-  providers: [],
+  providers: [
+    ShoppingListService,
+    RecipesService,
+    DataStorageService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

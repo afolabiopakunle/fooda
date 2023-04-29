@@ -14,4 +14,9 @@ export class HeaderComponent {
   storeRecipe() {
     this.dataStoreService.storeRecipe();
   }
+
+  fetchRecipes() {
+    this.dataStoreService.getRecipes();
+  }
+
 }
