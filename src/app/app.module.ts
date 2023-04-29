@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { RecipesService } from './recipes/recipes.service';
 import { DataStorageService } from './shared/data-storage.service';
+import { AuthComponent } from './auth/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { DataStorageService } from './shared/data-storage.service';
     ShoppingListComponent,
     ShoppingEditComponent,
     RecipeStartComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    AuthComponent
   ],
     imports: [
         CommonModule,
