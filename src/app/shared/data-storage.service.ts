@@ -17,6 +17,7 @@ export class DataStorageService {
   }
 
   getRecipes() {
+    if(this.recipesService.getRecipes().length > 0) return
     this.http.get<RecipeModel[]>('https://angular-15s-default-rtdb.firebaseio.com/recipes.json')
       .subscribe(recipes => {
         this.recipesService.setRecipes(recipes)

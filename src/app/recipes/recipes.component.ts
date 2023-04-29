@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
   styleUrls: ['./recipes.component.scss'],
-  providers: [RecipesService],
 })
 export class RecipesComponent implements OnInit {
 
