@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AuthComponent implements OnInit {
 
+  isLoginMode = true;
   form!: FormGroup;
 
   constructor(private fb: FormBuilder,
@@ -16,10 +17,13 @@ export class AuthComponent implements OnInit {
   ngOnInit() {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required]],
     })
   }
 
+  switchMode() {
+    this.isLoginMode = !this.isLoginMode;
+  }
   submit() {
     console.log(this.form.value);
   }

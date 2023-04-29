@@ -1,7 +1,7 @@
 <div class="container mt-5">
 <form [formGroup]="form" class="example-form">
   <div class="row">
-    <div class="col-md-6 mx-auto">
+    <div class="col-md-4 mx-auto">
       <mat-form-field class="example-full-width">
         <mat-label>Email</mat-label>
         <input formControlName="email" matInput placeholder="example.com">
@@ -11,9 +11,10 @@
         <input formControlName="password" matInput placeholder="Ex. Pizza" type="password">
       </mat-form-field>
 
-      <button [disabled]="form.invalid" mat-raised-button color="primary" (click)="submit()">Submit</button>
-      <br>
-      <a>Sign up?</a>
+      <div class="d-flex align-items-center">
+      <button [disabled]="form.invalid" mat-raised-button color="primary" (click)="submit()">{{ isLoginMode ? 'Login' : 'Sign up'}}</button>
+      <a  class="ms-auto" role="button" (click)="switchMode()">{{ isLoginMode ? 'Sign up?' : 'Login?'}}</a>
+      </div>
     </div>
   </div>
 </form>
