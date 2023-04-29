@@ -11,7 +11,7 @@
         <input formControlName="password" matInput placeholder="Ex. Pizza" type="password">
       </mat-form-field>
 
-      <button mat-raised-button color="primary" (click)="submit">Submit</button>
+      <button [disabled]="form.invalid" mat-raised-button color="primary" (click)="submit()">Submit</button>
       <br>
       <a>Sign up?</a>
     </div>
