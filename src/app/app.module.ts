@@ -21,6 +21,10 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { RecipesService } from './recipes/recipes.service';
 import { DataStorageService } from './shared/data-storage.service';
 import { AuthComponent } from './auth/auth/auth.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideDatabase,getDatabase } from '@angular/fire/database';
 
 @NgModule({
   declarations: [
@@ -45,6 +49,9 @@ import { AuthComponent } from './auth/auth/auth.component';
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideAuth(() => getAuth()),
+        provideDatabase(() => getDatabase()),
     ],
   providers: [
     ShoppingListService,

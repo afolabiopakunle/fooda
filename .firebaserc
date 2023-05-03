@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "angular-15s": {
+      "hosting": {
+        "fooda": [
+          "angular-15s"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angular-15s"
+  }
+}

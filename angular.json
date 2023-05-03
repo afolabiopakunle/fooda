@@ -121,6 +121,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "fooda:build:production",
+            "firebaseProject": "angular-15s",
+            "firebaseHostingSite": "angular-15s"
+          }
         }
       }
     }
