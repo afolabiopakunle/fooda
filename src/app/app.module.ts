@@ -25,6 +25,8 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { IsLoadingComponent } from './shared/is-loading/is-loading.component';
+import { HotToastModule } from '@ngneat/hot-toast';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
     ShoppingEditComponent,
     RecipeStartComponent,
     RecipeEditComponent,
-    AuthComponent
+    AuthComponent,
+    IsLoadingComponent
   ],
     imports: [
         CommonModule,
@@ -52,6 +55,7 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
         provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideAuth(() => getAuth()),
         provideDatabase(() => getDatabase()),
+        HotToastModule.forRoot(),
     ],
   providers: [
     ShoppingListService,
