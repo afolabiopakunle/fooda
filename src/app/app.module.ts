@@ -55,7 +55,9 @@ import { HotToastModule } from '@ngneat/hot-toast';
         provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideAuth(() => getAuth()),
         provideDatabase(() => getDatabase()),
-        HotToastModule.forRoot(),
+        HotToastModule.forRoot(          {
+          duration: 5000
+        }),
     ],
   providers: [
     ShoppingListService,

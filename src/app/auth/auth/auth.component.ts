@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { from, tap } from 'rxjs';
+import { catchError, from, of, tap } from 'rxjs';
 import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
@@ -37,26 +37,39 @@ export class AuthComponent implements OnInit {
     this.isLoading = true;
     const { email, password } = this.form.value;
     if(!this.isLoginMode) {
-      from(this.authService.signUp(email, password))
-        .pipe(
-          tap((response: any) => {
-            console.log('tap', response);
-            this.toast.observe({
-              success: 'User Created',
-              error: response?.error.errors.message,
-              loading: 'Loading...'
-            })
-          })
-        )
+      this.authService.signUp(email, password)
         .subscribe({
           next: (response) => {
             this.isLoading = false;
+            console.log(response);
+            this.toast.success('User verified')
           },
           error: (error) => {
-            this.toast.error(error.message)
             this.isLoading = false;
+            console.log(error.error.error.message);
+            switch (error.error.error.message) {
+              case 'EMAIL_EXISTS': {
+                this.toast.error('Email exists')
+              }
+            }
           }
         })
+    } else {
+     this.authService.login(email, password)
+       .subscribe({
+         next: (response) => {
+           this.isLoading = false;
+           this.toast.success('Login Successful');
+         },
+         error: (error) => {
+           switch (error.error.error.message) {
+             case 'INVALID_PASSWORD': {
+               this.toast.error('Invalid password')
+             }
+           }
+           this.isLoading = false;
+         }
+       })
     }
   }
 

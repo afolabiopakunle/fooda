@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
-import { from } from 'rxjs';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { from, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 export interface AuthResponse {
   kind: string
@@ -15,10 +16,15 @@ export interface AuthResponse {
   providedIn: 'root'
 }) export class AuthService {
 
-  constructor(private auth: Auth) {
+  constructor(private http: HttpClient,
+              ) {
   }
 
-  signUp<AuthResponse>(email: string, password: string) {
-    return from(createUserWithEmailAndPassword(this.auth, email, password))
+  signUp(email: string, password: string) {
+    return this.http.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAVZHagnPk4smg0zWRgHoLzmbAiBK_gEvE', {email, password, returnSecureToken: true})
+  }
+
+  login(email: string, password: string) {
+    return this.http.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAVZHagnPk4smg0zWRgHoLzmbAiBK_gEvE', {email, password, returnSecureToken: true})
   }
 }
