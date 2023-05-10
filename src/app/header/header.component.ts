@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DataStorageService } from '../shared/data-storage.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,11 @@ import { DataStorageService } from '../shared/data-storage.service';
 })
 export class HeaderComponent {
 
-  constructor(private dataStoreService: DataStorageService) {
+  isAuthenticated$ = this.authService.user;
+
+  constructor(private dataStoreService: DataStorageService,
+              private authService: AuthService,
+              ) {
   }
 
   storeRecipe() {

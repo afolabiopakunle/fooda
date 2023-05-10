@@ -1,12 +1,16 @@
 <mat-toolbar>
   <span>My App</span>
-  <span class="mx-4" routerLinkActive="active" routerLink="recipes"> Recipes</span>
+  <span class="mx-4" routerLinkActive="active" routerLink="auth/login"> Authenticate</span>
+  <span class="mx-4" routerLinkActive="active" routerLink="recipes" *ngIf="isAuthenticated$ | async"> Recipes</span>
   <span class="me-5" routerLinkActive="active" routerLink="shopping-list"> Shopping List</span>
   <span class="example-spacer"></span>
+  <span class="me-3" *ngIf="isAuthenticated$ | async" role="button">Log out</span>
+  <ng-container *ngIf="isAuthenticated$ | async">
   <span>Manage</span>
   <button [matMenuTriggerFor]="menu"  mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
     <mat-icon>expand_more</mat-icon>
   </button>
+  </ng-container>
 </mat-toolbar>
 <mat-menu xPosition="before" #menu="matMenu">
   <button mat-menu-item>
