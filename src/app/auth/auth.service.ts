@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
-import { from, of } from 'rxjs';
+import { from, of, Subject, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { UserModel } from './user.model';
 
 export interface AuthResponseData {
   kind: string
@@ -17,15 +18,26 @@ export interface AuthResponseData {
   providedIn: 'root'
 }) export class AuthService {
 
+  user = new Subject<UserModel>();
+
   constructor(private http: HttpClient,
               ) {
   }
 
   signUp(email: string, password: string) {
     return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAVZHagnPk4smg0zWRgHoLzmbAiBK_gEvE', {email, password, returnSecureToken: true})
+      .pipe(tap(resData => this.handleAuthentication(resData)));
   }
 
   login(email: string, password: string) {
     return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAVZHagnPk4smg0zWRgHoLzmbAiBK_gEvE', {email, password, returnSecureToken: true})
+      .pipe(tap(resData => this.handleAuthentication(resData)));
   }
+
+  handleAuthentication(resData: AuthResponseData) {
+      const expirationDate = new Date(new Date().getTime() + (+resData.expiresIn * 1000));
+      const user = new UserModel(resData.email, resData.localId, resData.idToken, expirationDate);
+      this.user.next(user);
+  }
+
 }

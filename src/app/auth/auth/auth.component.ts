@@ -34,7 +34,6 @@ export class AuthComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.form.value);
     if (this.form.invalid) return;
     this.isLoading = true;
     const {email, password} = this.form.value;
@@ -71,7 +70,6 @@ export class AuthComponent implements OnInit {
           this.isLoading = false;
         },
       });
-
   }
 
 }
