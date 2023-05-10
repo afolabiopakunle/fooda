@@ -3,13 +3,14 @@ import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from
 import { from, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-export interface AuthResponse {
+export interface AuthResponseData {
   kind: string
   idToken: string
   email: string
   refreshToken: string
   expiresIn: string
   localId: string
+  registered?: boolean
 }
 
 @Injectable({
@@ -21,10 +22,10 @@ export interface AuthResponse {
   }
 
   signUp(email: string, password: string) {
-    return this.http.post('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAVZHagnPk4smg0zWRgHoLzmbAiBK_gEvE', {email, password, returnSecureToken: true})
+    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAVZHagnPk4smg0zWRgHoLzmbAiBK_gEvE', {email, password, returnSecureToken: true})
   }
 
   login(email: string, password: string) {
-    return this.http.post('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAVZHagnPk4smg0zWRgHoLzmbAiBK_gEvE', {email, password, returnSecureToken: true})
+    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAVZHagnPk4smg0zWRgHoLzmbAiBK_gEvE', {email, password, returnSecureToken: true})
   }
 }

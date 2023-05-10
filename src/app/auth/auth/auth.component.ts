@@ -1,30 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../auth.service';
-import { catchError, from, of, tap } from 'rxjs';
+import { AuthResponseData, AuthService } from '../auth.service';
+import { catchError, from, Observable, of, tap } from 'rxjs';
 import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss']
+  styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
 
   isLoginMode = true;
   isLoading = false;
   form!: FormGroup;
+  authObs$!: Observable<AuthResponseData>;
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private toast: HotToastService,
-              ) {
+  ) {
   }
+
   ngOnInit() {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
-    })
+    });
   }
 
   switchMode() {
@@ -33,44 +35,43 @@ export class AuthComponent implements OnInit {
 
   submit() {
     console.log(this.form.value);
-    if(this.form.invalid) return
+    if (this.form.invalid) return;
     this.isLoading = true;
-    const { email, password } = this.form.value;
-    if(!this.isLoginMode) {
-      this.authService.signUp(email, password)
-        .subscribe({
-          next: (response) => {
-            this.isLoading = false;
-            console.log(response);
-            this.toast.success('User verified')
-          },
-          error: (error) => {
-            this.isLoading = false;
-            console.log(error.error.error.message);
-            switch (error.error.error.message) {
-              case 'EMAIL_EXISTS': {
-                this.toast.error('Email exists')
-              }
-            }
-          }
-        })
+    const {email, password} = this.form.value;
+    if (!this.isLoginMode) {
+      this.authObs$ = this.authService.signUp(email, password);
     } else {
-     this.authService.login(email, password)
-       .subscribe({
-         next: (response) => {
-           this.isLoading = false;
-           this.toast.success('Login Successful');
-         },
-         error: (error) => {
-           switch (error.error.error.message) {
-             case 'INVALID_PASSWORD': {
-               this.toast.error('Invalid password')
-             }
-           }
-           this.isLoading = false;
-         }
-       })
+      this.authObs$ = this.authService.login(email, password);
     }
+
+    this.authObs$
+      .subscribe({
+        next: (response) => {
+          this.isLoading = false;
+          console.log(response);
+          if (this.isLoginMode) {
+            this.toast.success('Login Successful');
+          } else {
+            this.toast.success('Sign-up Successful');
+          }
+        },
+        error: (error) => {
+          switch (error.error.error.message) {
+            case 'INVALID_PASSWORD':
+              this.toast.error('Invalid password');
+              break;
+            case 'EMAIL_EXISTS':
+              this.toast.error('Email exists');
+              break;
+            case 'EMAIL_NOT_FOUND':
+              this.toast.error('User not found');
+              break;
+            default : this.toast.error('An unknown error occurred')
+          }
+          this.isLoading = false;
+        },
+      });
+
   }
 
 }

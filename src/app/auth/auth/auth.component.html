@@ -3,6 +3,7 @@
   <app-is-loading *ngIf="isLoading"></app-is-loading>
   <div class="row" *ngIf="!isLoading">
     <div class="col-md-4 mx-auto">
+      <h2>{{ isLoginMode ? 'Login' : 'Sign up'}}</h2>
       <mat-form-field class="example-full-width">
         <mat-label>Email</mat-label>
         <input formControlName="email" matInput placeholder="example@mail.com">
