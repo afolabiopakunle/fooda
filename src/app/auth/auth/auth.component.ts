@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthResponseData, AuthService } from '../auth.service';
 import { catchError, from, Observable, of, tap } from 'rxjs';
 import { HotToastService } from '@ngneat/hot-toast';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -19,6 +20,7 @@ export class AuthComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private toast: HotToastService,
+              private router: Router,
   ) {
   }
 
@@ -53,6 +55,7 @@ export class AuthComponent implements OnInit {
           } else {
             this.toast.success('Sign-up Successful');
           }
+          this.router.navigate(['recipes'])
         },
         error: (error) => {
           switch (error.error.error.message) {
