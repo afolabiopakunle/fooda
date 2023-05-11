@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
-import { from, of, Subject, tap } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { UserModel } from './user.model';
 import { environment } from '../../environments/environment';
@@ -19,7 +18,7 @@ export interface AuthResponseData {
   providedIn: 'root'
 }) export class AuthService {
 
-  user = new Subject<UserModel>();
+  user = new BehaviorSubject<UserModel | null>(null);
 
   constructor(private http: HttpClient,
               ) {

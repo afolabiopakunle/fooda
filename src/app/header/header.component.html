@@ -1,6 +1,6 @@
 <mat-toolbar>
   <span>My App</span>
-  <span class="mx-4" routerLinkActive="active" routerLink="auth/login"> Authenticate</span>
+  <span class="mx-4" routerLinkActive="active" routerLink="auth/login"  *ngIf="!(isAuthenticated$ | async)"> Authenticate</span>
   <span class="mx-4" routerLinkActive="active" routerLink="recipes" *ngIf="isAuthenticated$ | async"> Recipes</span>
   <span class="me-5" routerLinkActive="active" routerLink="shopping-list"> Shopping List</span>
   <span class="example-spacer"></span>
